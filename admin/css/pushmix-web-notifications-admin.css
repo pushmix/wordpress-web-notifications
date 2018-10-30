@@ -1,0 +1,15 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+ .subscription_id{
+ 	width:400px !important;
+ }
+
+ .dual-listbox .dual-listbox__buttons>button{
+ 	margin: 0.5em 0 !important;
+ }
+
+ .dual-listbox .dual-listbox__available, .dual-listbox .dual-listbox__selected{
+ 	background-color: #fff;
+ }
