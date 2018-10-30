@@ -183,7 +183,8 @@ class Pushmix_Web_Notifications_Admin {
     	// Push Notification Page
         add_menu_page(
         	"Pushmix - Web Push Notification", 
-        	'Pushmix', 'manage_options', 
+        	'Pushmix', 
+        	'manage_options', 
             'pushmix_web_notifications',
             [$this,'pushmix_push'], 
             'dashicons-megaphone',
@@ -208,13 +209,25 @@ class Pushmix_Web_Notifications_Admin {
   	 */
   	public function pushmix_settings(){
         
-  		#dd($_POST['page_id']);
+  		#d($_POST['post_name']);
+		global $wpdb;
 
-        if( isset($_POST['page_id'])){
+		// Get All Posts and Pages with publish status
+  		$all_pages = $wpdb->get_results( "SELECT ID, post_title,post_name,post_type 
+  			FROM $wpdb->posts
+  			WHERE post_status LIKE 'publish' 
+  			AND post_type IN ('page','post')
+  			ORDER BY  post_title ASC" );
+
+  		#dd($all_pages);
+
+  		// Update Allowed pages
+        if( isset($_POST['post_name'])){
         	update_option('__pm_allowed_pages', 
-        		json_encode($_POST['page_id']));
+        		$_POST['post_name']);
         }
 
+        // Update Subscription ID
         if(isset($_POST['subscription_id']) ){
         	#dd($_POST['subscription_id']);
         	update_option('__pm_subscription_id', $_POST['subscription_id']);
@@ -224,6 +237,7 @@ class Pushmix_Web_Notifications_Admin {
         $url 				= $this->url_settings;
         $url_push 			= $this->url_push;
 		$subscription_id 	= get_option('__pm_subscription_id');
+		$allowed 			= get_option('__pm_allowed_pages');
 
 		#dd($subscription_id);
         require 'partials/pushmix-web-notifications-admin-settings.php';
@@ -258,10 +272,5 @@ class Pushmix_Web_Notifications_Admin {
    /***/  
 
 
-   public function update(){
-
-   		dd('asdasd');
-   }
-   /***/
 
 }

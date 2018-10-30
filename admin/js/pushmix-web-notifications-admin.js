@@ -40,7 +40,7 @@ $(function() {
 	        //console.log(value);
 	    },
 	    availableTitle: 'Available pages',
-	    selectedTitle: 'Show opt in prompt on these pages',
+	    selectedTitle: 'Display opt in prompt',
 	    addButtonText: '>',
 	    removeButtonText: '<',
 	    addAllButtonText: '>>',

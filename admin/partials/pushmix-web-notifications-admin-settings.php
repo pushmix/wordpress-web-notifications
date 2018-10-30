@@ -23,7 +23,7 @@
 
 <?php if( isset($msg_updated) ) {?>
 	<div class="updated notice">
-    <p>Subscription ID has been successfully updated. <a href="<?php echo $url_push;?>">Push Notification</a></p>
+    <p>Settings have been successfully updated. <a href="<?php echo $url_push;?>">Push Notification</a></p>
 </div>
 <?php }?>	
 
@@ -44,7 +44,7 @@
     <td>
     	<input type="text" class="subscription_id" name="subscription_id" id="subscription_id" value="<?php echo $subscription_id;?>">
         <br>
-        <span class="description">Can't find Subscription ID - <a href="https://www.pushmix.co.uk/docs#subscription_id">read this</a>.</span>
+        <span class="description">Subscription ID <a href="https://www.pushmix.co.uk/docs#subscription_id" target="_new">documentation</a>.</span>
     </td>
 </tr>
 </table>
@@ -54,26 +54,21 @@
 
 <p>Select pages you would like to display Opt In Prompt on.</p>
 
-<ul>
-    <?php
-    $args = array(
-    'depth'                 => 0,
-    'child_of'              => 0,
-    'sort_order'            => 'ASC',
-    'sort_column'           => 'post_title',    
-    'selected'              => 0,
-    'echo'                  => 1,
-    'name'                  => 'page_id[]',
-    'id'                    => null, // string
-    'class'                 => 'dual_list', // string
-    'show_option_none'      => null, // string
-    'show_option_no_change' => null, // string
-    'option_none_value'     => null, // string
-     'post_type'            => 'page'
-); 
-wp_dropdown_pages($args);
-    ?>
-</ul>
+<select name="post_name[]" class="dual_list" multiple>
+    <?php foreach($all_pages as $p) {
+        $op = '<option value="'.$p->post_name.'"';
+        if( in_array($p->post_name, $allowed) ){
+            $op.= " selected ";
+        }
+        $op.= '>';
+        $op.= $p->post_title;
+        $op.= '</option>';
+        echo $op;
+        unset($op);
+    }?>
+  
+</select>
+
 
 
 <?php submit_button(); ?>

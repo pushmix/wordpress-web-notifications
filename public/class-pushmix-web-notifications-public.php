@@ -96,15 +96,14 @@ class Pushmix_Web_Notifications_Public {
 		 * class.
 		 */
 		$allowed = get_option('__pm_allowed_pages');
+		#dd($allowed);
 		if(empty($allowed) === true){
 			$allowed = [];
-		}else{
-			$pageIds = array_map('intval', json_decode($allowed));
 		}
 		#dd($pageIds);
 		#dd(is_page('sample-page'));
 
-		if( is_page( $pageIds ) ){
+		if( is_page( $allowed ) ){
 
 			$subscriber_id = get_option('__pm_subscription_id');
 			#var_dump($subscriber_id);
