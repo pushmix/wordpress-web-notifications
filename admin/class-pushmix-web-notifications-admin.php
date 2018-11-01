@@ -138,7 +138,7 @@ class Pushmix_Web_Notifications_Admin {
 		 * class.
 		 */
 		#dd($hook);
-		if( strpos($hook, 'pushmix') !== false ){
+		if( strpos($hook, 'pushmix_page_pushmix_settings') !== false ){
 
 
 			wp_enqueue_script( "dual-listbox-js", plugin_dir_url( __FILE__ ) . 'js/dual-listbox.min.js', array( ), $this->version, false );

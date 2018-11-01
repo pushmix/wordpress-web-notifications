@@ -13,3 +13,19 @@
  .dual-listbox .dual-listbox__available, .dual-listbox .dual-listbox__selected{
  	background-color: #fff;
  }
+
+ .pl-02{padding-left:0.2em !important;}
+ .mb-1{ margin-bottom: 1em !important; }
+ .mb-2{ margin-bottom: 2em !important; }
+
+ .m-12{
+ 	margin:12px !important;
+ }
+
+ .m-12 input, .m-12 textarea, .m-12 select{
+ 	width:100%;
+ }
+
+ .mh-255{ min-height: 255px !important; }
+
+ .float-left{ float:left !important; }
