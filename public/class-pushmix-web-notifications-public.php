@@ -61,19 +61,19 @@ class Pushmix_Web_Notifications_Public {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Pushmix_Web_Notifications_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Pushmix_Web_Notifications_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+            /**
+             * This function is provided for demonstration purposes only.
+             *
+             * An instance of this class should be passed to the run() function
+             * defined in Pushmix_Web_Notifications_Loader as all of the hooks are defined
+             * in that particular class.
+             *
+             * The Pushmix_Web_Notifications_Loader will then create the relationship
+             * between the defined hooks and the functions defined in this
+             * class.
+             */
 
-		// wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pushmix-web-notifications-public.css', array(), $this->version, 'all' );
+            // wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pushmix-web-notifications-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -84,41 +84,42 @@ class Pushmix_Web_Notifications_Public {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Pushmix_Web_Notifications_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Pushmix_Web_Notifications_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-		$allowed = get_option('__pm_allowed_pages');
-		#dd($allowed);
-		if(empty($allowed) === true){
-			$allowed = [];
-		}
-		#dd($pageIds);
-		#dd(is_page('sample-page'));
+            /**
+             * This function is provided for demonstration purposes only.
+             *
+             * An instance of this class should be passed to the run() function
+             * defined in Pushmix_Web_Notifications_Loader as all of the hooks are defined
+             * in that particular class.
+             *
+             * The Pushmix_Web_Notifications_Loader will then create the relationship
+             * between the defined hooks and the functions defined in this
+             * class.
+             */
+            $allowed        = get_option('__pm_allowed_pages');
+            $subscriber_id  = get_option('__pm_subscription_id');
 
-		if( is_page( $allowed ) ){
+            #dd($allowed);
+            if(empty($allowed) === true){
+                    $allowed = [];
+            }
+            #dd($pageIds);
+            #dd(is_page('sample-page'));
 
-			$subscriber_id = get_option('__pm_subscription_id');
-			#var_dump($subscriber_id);
-			#dd($subscriber_id);
+            if( is_page( $allowed ) && !empty($subscriber_id) ){
 
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/pushmix-web-notifications-public.js', array( 'jquery' ), $this->version, false );
+                #var_dump($subscriber_id);
+                #dd($subscriber_id);
 
-			wp_localize_script( $this->plugin_name, '_pm', array(
-			     "subscriber_id" => $subscriber_id,
-			     "sw" => plugin_dir_url( __FILE__ ) . "js/pm_service_worker.js",
-			     "api" => "https://www.pushmix.co.uk/api/",
-			     "debug"	=> true	    
-			) );	
+                wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/pushmix-web-notifications-public.js', array( 'jquery' ), $this->version, false );
 
-		}	
+                wp_localize_script( $this->plugin_name, '_pm', array(
+                     "subscriber_id" => $subscriber_id,
+                     "sw" => plugin_dir_url( __FILE__ ) . "js/pm_service_worker.js",
+                     "api" => "https://www.pushmix.co.uk/api/",
+                     "debug"	=> true	    
+                ) );	
+
+            }	
 	
 
 	}

@@ -21,11 +21,17 @@
 <?php settings_errors(); ?>
 
 
-<?php if( isset($msg_updated) ) {?>
-	<div class="updated notice">
-    <p>Settings have been successfully updated. <a href="<?php echo $url_push;?>">Push Notification</a></p>
+<?php foreach( $msg as $m) {?>
+<div class="notice is-dismissible <?php echo $m['class'];?>"> 
+	<p><strong><?php echo $m['message'];?></strong></p>
+	<button type="button" class="notice-dismiss">
+		<span class="screen-reader-text">Dismiss this notice.</span>
+	</button>
 </div>
 <?php }?>	
+
+ 
+ 
 
 
 
