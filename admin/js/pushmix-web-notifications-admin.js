@@ -31,6 +31,7 @@
 
 $(function() {
 
+        if(document.getElementsByClassName("dual_list").length > 0){
 
 	var dualListbox = new DualListbox('.dual_list',{
 	    addEvent: function(value) {
@@ -54,6 +55,7 @@ $(function() {
 	dualListbox.remove_all_button.setAttribute('class', 'button-primary');
 
 	document.getElementsByClassName("dual_list")[0].setAttribute("multiple", true);	
+    }
 });
 
  

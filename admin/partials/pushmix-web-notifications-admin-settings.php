@@ -16,11 +16,16 @@
 
 <div class="wrap">
 
+    
+<!-- Title    -->
+<h1>Pushmix - Settings</h1>
+<!-- END Title    -->
 
-<h1>Pushmix - Web Push Notifications</h1>
+<!-- Settings Errors    -->
 <?php settings_errors(); ?>
+<!-- END Settings Errors    -->
 
-
+<!-- Notice    -->
 <?php foreach( $msg as $m) {?>
 <div class="notice is-dismissible <?php echo $m['class'];?>"> 
 	<p><strong><?php echo $m['message'];?></strong></p>
@@ -29,55 +34,94 @@
 	</button>
 </div>
 <?php }?>	
+<!-- END Notice    -->
 
  
- 
-
-
-
-<h2 class="nav-tab-wrapper">
-    <div class="nav-tab nav-tab-active">Settings</div>
-</h2>
-
 <form method="post" action="<?php echo $url;?>"> 
 <?php settings_fields( 'pushmix_settings' );?>
-<table class="form-table">
-<tr>
-    <th scope="row">
-        <label for="my-text-field">Pushmix Subscription ID</label>
-    </th>
- 
-    <td>
-    	<input type="text" class="subscription_id" name="subscription_id" id="subscription_id" value="<?php echo $subscription_id;?>">
-        <br>
-        <span class="description">Subscription ID <a href="https://www.pushmix.co.uk/docs#subscription_id" target="_new">documentation</a>.</span>
-    </td>
-</tr>
-</table>
+    
+
+<!--    Container-->
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+    
+<!--    First Row-->            
+    <h6 class="border-bottom border-gray pb-2 mb-0">Subscription ID</h6>
+    <div class="text-muted pt-3">
+
+        <div class="row">
+
+            <div class="col-lg-4">
+                <p class="text-muted">
+                    Subscription ID is required in order to identify and retrieve your subscription details. This ID can be found in the Dashboard under Code subscription menu.
+                </p>
+               
+            </div>
+
+            <div class="col-lg-8 col-xl-8">
+                <div class="form-group">
+
+                    <input type="text" class="form-control form-control-alt" id="subscription_id" name="subscription_id" value="<?php echo $subscription_id; ?>" placeholder="Enter your Subscription ID ...">
+                </div>
+            </div>
+
+        </div>                        
+
+    </div>
+<!--    END First Row-->        
+        
+<!--    Second Row-->        
+    <h6 class="border-bottom border-gray pb-2 mb-0">Subscription Prompt</h6>        
+    <div class="text-muted pt-3">
+
+        <div class="row">
+
+            <div class="col-lg-4">
+                <p class="text-muted">
+                    Select at leat one page to display your subscription prompt. 
+                </p>
+            </div>
+
+            <div class="col-lg-8 col-xl-8">
+
+                <div class="form-group">
+
+                    <select name="post_name[]" class="dual_list" multiple>
+                        <?php
+                        foreach ($all_pages as $p) {
+                            $op = '<option value="' . $p->post_name . '"';
+                            if (in_array($p->post_name, $allowed)) {
+                                $op.= " selected ";
+                            }
+                            $op.= '>';
+                            $op.= $p->post_title;
+                            $op.= '</option>';
+                            echo $op;
+                            unset($op);
+                        }
+                        ?>
+
+                    </select> 
+
+                </div>
+
+            </div>
+
+        </div>                           
+
+    </div>
+<!--    END Second Row-->
+
+        <small class="d-block text-right mt-3">
+          <?php submit_button('Save Settings', 'primary', 'submit', false)?>
+        </small>
+        
+    
+</div>    
+<!-- END   Container-->
+    
+</form>    
 
 
-<h3>Opt In Prompt</h3>
 
-<p>Select pages you would like to display Opt In Prompt on.</p>
-
-<select name="post_name[]" class="dual_list" multiple>
-    <?php foreach($all_pages as $p) {
-        $op = '<option value="'.$p->post_name.'"';
-        if( in_array($p->post_name, $allowed) ){
-            $op.= " selected ";
-        }
-        $op.= '>';
-        $op.= $p->post_title;
-        $op.= '</option>';
-        echo $op;
-        unset($op);
-    }?>
-  
-</select>
-
-
-
-<?php submit_button(); ?>
-</form>
 </div>
 

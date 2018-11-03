@@ -2,30 +2,37 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
- .subscription_id{
- 	width:400px !important;
- }
 
+body{ background: #f1f1f1 !important;}
+
+
+/* Overwriting WP Select Style*/
+ .wp-admin select{
+    padding: .375rem .75rem !important;
+    line-height: 1.5 !important;
+    height: calc(2.25rem + 2px) !important;
+ }
+ .card{
+     padding:0 !important;
+ }
+/* Dual List Styles*/
+
+.dual-listbox .dual-listbox__search{
+    max-width: inherit !important;
+    border-radius: .25rem;
+}
+
+ .dual-listbox .dual-listbox__title{ 
+     font-size: inherit !important;
+     text-align: center;
+     background-color: #f8f9fa!important;
+ }
+ 
  .dual-listbox .dual-listbox__buttons>button{
  	margin: 0.5em 0 !important;
  }
 
  .dual-listbox .dual-listbox__available, .dual-listbox .dual-listbox__selected{
  	background-color: #fff;
- }
-
- .pl-02{padding-left:0.2em !important;}
- .mb-1{ margin-bottom: 1em !important; }
- .mb-2{ margin-bottom: 2em !important; }
-
- .m-12{
- 	margin:12px !important;
- }
-
- .m-12 input, .m-12 textarea, .m-12 select{
- 	width:100%;
- }
-
- .mh-255{ min-height: 255px !important; }
-
- .float-left{ float:left !important; }
+ } 
+ 
