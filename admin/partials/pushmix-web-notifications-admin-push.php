@@ -66,10 +66,10 @@
             <div class="form-group">
                 <p class="h6">Audience <span class='text-danger'>*</span></p>
                 <label for="topic"><small class='text-muted'>Select subscribers audience</small></label>
-                <select class="form-control" id="topic" name='topic'>
+                <select class="form-control <?php echo (isset($old['topic']['error']) ? 'is-invalid' : ''); ?>" id="topic" name='topic' tabindex="1">
                     <option value="all">All Audience</option>
                   <?php foreach( $topics as $t) {?>
-                    <option value="<?php echo $t->id;?>"><?php echo $t->topic_name;?></option>
+                    <option value="<?php echo $t->id;?>" <?php echo ( (isset($old['topic']['value']) && strcmp($old['topic']['value'],$t->id)===0) ? "selected='selected'" : ''); ?> > <?php echo $t->topic_name;?></option>
                   <?php }?>
                 </select>
               </div>
@@ -79,9 +79,10 @@
             <div class="form-group">
                 <p class="h6">Priority <span class='text-danger'>*</span></p>
                 <label for="priority"><small class='text-muted'>High priority messages attempted to be delivered immediately. Normal priority messages won't open network connections on a sleeping device, and their delivery may be delayed to conserve battery</small></label>
-                <select class="form-control" id="topic" name='priority'>
-                    <option value="high" selected="selected">High</option>
-                    <option value="normal">Normal</option>
+                <select class="form-control <?php echo (isset($old['priority']['error']) ? 'is-invalid' : ''); ?>" id="priority" name='priority' tabindex="2">
+                	<?php foreach($notification_priority as $pkey => $pval){?>
+                    	<option value="<?php echo $pkey;?>" <?php echo ( (isset($old['priority']['value']) && strcmp($old['priority']['value'],$pkey)===0) ? "selected='selected'" : ''); ?>><?php echo $pval;?></option>
+                	<?php }?>
                 </select>
               </div>  
         <!--      END  Priority-->
@@ -91,17 +92,10 @@
             <div class="form-group">
                 <p class="h6">Notification Lifespan <span class='text-danger'>*</span></p>
                 <label for="time_to_live"><small class='text-muted'>Maximum notification lifespan</small></label>
-                <select class="form-control" id="topic" name='time_to_live'>
-                    <option value="3600" selected="selected">1 Hour</option>
-                    <option value="14400">4 Hours</option>
-                    <option value="28800">8 Hours</option>
-                    <option value="57600">16 Hours</option>
-                    <option value="86400">24 Hours</option>
-                    <option value="172800">2 Days</option>
-                    <option value="604800">7 Days</option>
-                    <option value="1209600">2 Weeks</option>
-                    <option value="1814400">3 Weeks</option>
-                    <option value="2419200">4 Weeks</option>
+                <select class="form-control <?php echo (isset($old['time_to_live']['error']) ? 'is-invalid' : ''); ?>" id="time_to_live" name='time_to_live' tabindex="3">
+                	<?php foreach( $notification_lifespan as $lkey => $lval) { ?>
+                    	<option value="<?php echo $lkey;?>" <?php echo ( (isset($old['time_to_live']['value']) && strcmp($old['time_to_live']['value'],$lkey)===0) ? "selected='selected'" : ''); ?>><?php echo $lval;?></option>
+                	<?php } ?>
                 </select>
               </div>  
         <!--      END  Priority-->
@@ -137,7 +131,7 @@
             <div class="form-group">
                 <p class="h6">Notification Title <span class='text-danger'>*</span></p>
                 <label for="title"><small class='text-muted'>Keep it short - up to 30 characters</small></label>
-                <input type="text" class="form-control <?php echo (isset($old['title']['error']) ? 'is-invalid' : ''); ?>" id="title" name="title" value="<?php echo (isset($old['title']['value']) ? $old['title']['value'] : ''); ?>" placeholder="Chelsea vs Man United"  tabindex="3">
+                <input type="text" class="form-control <?php echo (isset($old['title']['error']) ? 'is-invalid' : ''); ?>" id="title" name="title" value="<?php echo (isset($old['title']['value']) ? $old['title']['value'] : ''); ?>" placeholder="Chelsea vs Man United"  tabindex="4">
               </div>
         <!--      END  Notification Title-->
 
@@ -146,7 +140,7 @@
                 <p class="h6">Notification Body <span class='text-danger'>*</span></p>
                 <label for="body"><small class='text-muted'>Keep it short</small></label>
 
-                <textarea class="form-control <?php echo (isset($old['body']['error']) ? 'is-invalid' : ''); ?>" id="body" name="body" value="" placeholder="Five reasons why Chelsea win Champions League" tabindex="4" rows="3"><?php echo (isset($old['body']['value']) ? $old['body']['value'] : ''); ?></textarea>                
+                <textarea class="form-control <?php echo (isset($old['body']['error']) ? 'is-invalid' : ''); ?>" id="body" name="body" value="" placeholder="Five reasons why Chelsea win Champions League" tabindex="5" rows="3"><?php echo (isset($old['body']['value']) ? $old['body']['value'] : ''); ?></textarea>                
               </div>  
         <!--      END  Notification Body-->
 
@@ -155,7 +149,7 @@
             <div class="form-group">
                 <p class="h6">URL  <span class='text-danger'>*</span></p>
                 <label for="default_url"><small class='text-muted'>Valid URL, used when notification clicked</small></label>
-                <input type="text" class="form-control <?php echo (isset($old['default_url']['error']) ? 'is-invalid' : ''); ?>" id="default_url" name="default_url" value="<?php echo (isset($old['default_url']['value']) ? $old['default_url']['value'] : ''); ?>" placeholder="<?php echo get_site_url();?>" tabindex="5">
+                <input type="text" class="form-control <?php echo (isset($old['default_url']['error']) ? 'is-invalid' : ''); ?>" id="default_url" name="default_url" value="<?php echo (isset($old['default_url']['value']) ? $old['default_url']['value'] : ''); ?>" placeholder="<?php echo get_site_url();?>" tabindex="6">
               </div>  
         <!--      END  URL -->
 
@@ -207,7 +201,7 @@
             <div class="form-group">
                 <p class="h6">Action Title</p>
                 <label for="action_title_one"><small class='text-muted'>Short action title. Example: <mark>Read More</mark></small></label>
-                <input type="text" class="form-control" id="action_title_one" name="action_title_one" value="" placeholder="Read More" tabindex="7">
+                <input type="text" class="form-control <?php echo (isset($old['action_title_one']['error']) ? 'is-invalid' : ''); ?>" id="action_title_one" name="action_title_one" value="<?php echo (isset($old['action_title_one']['value']) ? $old['action_title_one']['value'] : ''); ?>" placeholder="Read More" tabindex="7">
               </div>
         <!--      END  Action Title-->
 
@@ -215,7 +209,7 @@
             <div class="form-group">
                 <p class="h6">Action URL</p>
                 <label for="action_url_one"><small class='text-muted'>Action destination URL.</small></label>
-                <input type="text" class="form-control" id="action_url_one" name="action_url_one" value="" placeholder="<?php echo get_site_url();?>/read-more" tabindex="8">               
+                <input type="text" class="form-control <?php echo (isset($old['__action_url_one']['error']) ? 'is-invalid' : ''); ?>" id="action_url_one" name="action_url_one" value="<?php echo (isset($old['action_url_one']['value']) ? $old['action_url_one']['value'] : ''); ?>" placeholder="<?php echo get_site_url();?>/read-more" tabindex="8">               
               </div>  
         <!--      END  Action URL-->
 
@@ -247,7 +241,7 @@
             <div class="form-group">
                 <p class="h6">Action Title</p>
                 <label for="action_title_two"><small class='text-muted'>Short action title. Example: <mark>View Offer</mark></small></label>
-                <input type="text" class="form-control" id="action_title_two" name="action_title_two" value="" placeholder="View Offer" tabindex="7">
+                <input type="text" class="form-control <?php echo (isset($old['action_title_two']['error']) ? 'is-invalid' : ''); ?>" id="action_title_two" name="action_title_two" value="<?php echo (isset($old['action_title_two']['value']) ? $old['action_title_two']['value'] : ''); ?>" placeholder="View Offer" tabindex="9">
               </div>
         <!--      END  Action Title-->
 
@@ -255,7 +249,7 @@
             <div class="form-group">
                 <p class="h6">Action URL</p>
                 <label for="action_url_two"><small class='text-muted'>Action destination URL.</small></label>
-                <input type="text" class="form-control" id="action_url_one" name="action_url_two" value="" placeholder="<?php echo get_site_url();?>/view-offer" tabindex="8">               
+                <input type="text" class="form-control <?php echo (isset($old['__action_url_two']['error']) ? 'is-invalid' : ''); ?>" id="action_url_two" name="action_url_two" value="<?php echo (isset($old['action_url_two']['value']) ? $old['action_url_two']['value'] : ''); ?>" placeholder="<?php echo get_site_url();?>/view-offer" tabindex="10">               
               </div>  
         <!--      END  Action URL-->
 
@@ -304,7 +298,7 @@
             <div class="form-group">
                 <p class="h6">Image URL</p>
                 <label for="action_title_one"><small class='text-muted'>Large Image URL</small></label>
-                <input type="text" class="form-control" id="image" name="image" value="" placeholder="<?php echo get_site_url();?>/large-image.png"  tabindex="13">
+                <input type="text" class="form-control <?php echo (isset($old['image']['error']) ? 'is-invalid' : ''); ?>" id="image" name="image" value="<?php echo (isset($old['image']['value']) ? $old['image']['value'] : ''); ?>" placeholder="<?php echo get_site_url();?>/large-image.png"  tabindex="11">
               </div>
         <!--      END Large Image-->
 

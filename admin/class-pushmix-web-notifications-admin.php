@@ -46,38 +46,6 @@ class Pushmix_Web_Notifications_Admin {
 	 */
 	private $pm;
         
-        /**
-         * Pushmix API Endpoints
-         * @var type 
-         */
-        private $api = [
-            'get_topics'    => "http://localhost/api/t",
-        ];
-        
-        /**
-         * Array opf accepted Notification Fields
-         * @var type 
-         */
-        private $fields = [
-            'topic'         => 'required',
-            'priority'      => 'required',
-            'time_to_live'  => 'required',
-            'title'         => 'required',
-            'body'          => 'required',
-            'default_url'   => 'required',
-            'action_title_one'  => '',
-            'action_url_one'    => '',
-            'action_title_two'  => '',
-            'action_url_two'    => '',
-            'image'            
-        ];
-        /***/
-
-        /**
-         * Notification Messages
-         * @var type 
-         */
-        private $msg;
 	/**
 	 * Settings URL
 	 */
@@ -109,12 +77,10 @@ class Pushmix_Web_Notifications_Admin {
 
 		$this->plugin_name  = $plugin_name;
 		$this->version      = $version;
-                $this->msg          = [];
+        $this->msg          = [];
 
-		#$this->pm = new PushmixClass();
+		$this->pm = new PushmixClass();
 
-		$this->url_settings = network_admin_url('admin.php?page=pushmix_settings');
-		$this->url_push     = network_admin_url('admin.php?page=pushmix_web_notifications');
 	}
 
 	/**
@@ -262,29 +228,25 @@ class Pushmix_Web_Notifications_Admin {
      */
     public function pushmix_settings(){
         
-        // Is environment Localhost -- add message notice
-        $this->isLocalhost();
+        // Add notice if environment is localhost 
+        $this->pm->isLocalhost();
         
         // Is this POST request
-        $is_post = isset($_POST['post_name']) || isset($_POST['subscription_id']);
-        #dd($_POST['post_name']);
-        
-        // Is this POST request
-        if( empty($is_post) === false ){
-            
+      	if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+      	
             // update settings
-            $this->updateSettings();
+            $this->pm->updateSettings();
+      	}      
 
-        }
         // Get All Posts and Pages with publish status
-        $all_pages = $this->getPages();
+        $all_pages = $this->pm->getPages();
         #dd($all_pages);
 
-        $url 			= $this->url_settings;
-        $url_push		= $this->url_push;
+        $url 				= $this->pm->getSettingsUrl();
+        $url_push			= $this->pm->getPushUrl();
         $subscription_id 	= get_option('__pm_subscription_id');
-        $allowed 		= get_option('__pm_allowed_pages');
-        $msg                    = $this->msg;
+        $allowed 			= get_option('__pm_allowed_pages');
+        $msg                = $this->pm->getMsg();
 
         #dd($subscription_id);
         require 'partials/pushmix-web-notifications-admin-settings.php';
@@ -294,64 +256,61 @@ class Pushmix_Web_Notifications_Admin {
 
   /**
    * Diaplay Admin Page
+   * Accept and process POST request for Push Notification
    * @return [type] [description]
    */
     public function pushmix_push(){
         
-       	$url                = $this->url_settings;
-        $url_push           = $this->url_push;
+       	$url                = $this->pm->getSettingsUrl();
+        $url_push           = $this->pm->getPushUrl();
         $subscription_id    = get_option('__pm_subscription_id');
-        $msg                = $this->msg;
+        $msg                = $this->pm->getMsg();
+        $notification_priority = $this->pm->getNotificationPriorities();
+        $notification_lifespan = $this->pm->getNotificationLifespan();
         #dd($subscription_id);
         
         /**
-         * Has Subscription ID 
+         * No Subscription ID found
+         * display settings interface
          */
         if( empty($subscription_id) === true){
 
-            $all_pages = $this->getPages();
+            $all_pages = $this->pm->getPages();
             $allowed   = get_option('__pm_allowed_pages');
-            $msg       = $this->msg;
+            $msg       = $this->pm->getMsg();
             
             // no subscription ID - display settings interface
             require 'partials/pushmix-web-notifications-admin-settings.php';
             return;
 
-        }        
-        
+        } 
+
         // get subscription topics
-        $topics     = $this->getTopics($subscription_id); 
-        
+        $topics     = $this->pm->getTopics($subscription_id); 
+
+		/**
+		 * POST Request
+		 * Validate input - in case of errors retain input values and sisplay errors
+		 * Push Notification - push notification via API, display success message
+		 */
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            #dd($_POST);
-            $old = [];
-            $has_error = false;
-            foreach( $_POST as $key => $p ){
-                
-                if(array_key_exists($key, $this->fields) ){
-                    $old[$key] = [ 'value' => $p ];
-                    
-                    if( empty($old[$key]['value']) && strcmp($this->fields[$key], "required") === 0){
-                        
-                        $old[$key]['error'] = true;
-                        add_settings_error('pushmix_settings', $key, 'The '.$key.' is required');
-                        $has_error = true;
-                        break;
-                    }
-                }
-            }
-            #dd($old['title']['error']);
+
             
-            if( $has_error === true ){
+            if( $this->pm->validateInput() === true ){
+
+            	$old = $this->pm->getOldInput();
                 require 'partials/pushmix-web-notifications-admin-push.php';
                 return;
-            }
+
+            }else{
+            	dd('Call API to push Notification out');
+            }	
         }
         
         
         
         #dd($topics);
-        $msg        = $this->msg;
+        $msg                = $this->pm->getMsg();
         // display push interface
         require 'partials/pushmix-web-notifications-admin-push.php';
         return;
@@ -360,116 +319,14 @@ class Pushmix_Web_Notifications_Admin {
    }
    /***/  
    
-   
-    /**
-     * Check if Wp is running on localhost or not
-     * @return boolean - true if running on localhost
-     */
-    private function isLocalhost(){
-        #return false;
 
-        $is_local = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']);
-        
-        if( $is_local )
-            array_push($this->msg, [
-                'class'     => $this->notice_css['info'],
-                'message'   => 'Local Environment detected - Subscription prompt will only be displayed under localhost domain name. <a href="#">More info</a>',
-            ]);        
-        
-        return $is_local;
-    }
-    /***/   
 
-    /**
-     * Retrieve Audience Topics
-     */
-    private function getTopics($subscription_id){
-        
-        $data = [
-            'body' => [
-                'subscription_id' => $subscription_id
-                ]
-        ];
-        $topics = wp_remote_post($this->api['get_topics'], $data);
-        
-        #dd($topics);
-        
-        if( is_wp_error( $topics ) ) {
-            
-            array_push($this->msg,[
-                'class'     => $this->notice_css['error'],
-                'message'   => $topics->get_error_message()
-            ]);
-            
-            return [];
-        }
-        
-        if( empty($topics['response']) === false && $topics['response']['code'] !== 200){
-            
-            $rsp = json_decode($topics['body']);
-            
-            array_push($this->msg,[
-                'class'     => $this->notice_css['error'],
-                'message'   => $rsp->error.' -  Check plugin <a href="'.$this->url_settings.'">settings</a>.'
-            ]);
-            
-             return [];
-        }        
-        
-        if($topics['response']['code'] === 200){
-            
-            return json_decode( $topics['body']);
-        }
-        
-        return [];
-        
-    }
-    /***/
+     
+
+
     
     
-   /**
-    * Update Settings
-    */
-   private function updateSettings(){
-       
-       #dd($_POST);
-       
-       $is_updated      = true;
-       $allowed_pages   = isset($_POST['post_name']) ? $_POST['post_name'] : [];
-       $subscription_id = isset($_POST['subscription_id']) ? $_POST['subscription_id'] : '';
-       
-        // Update Allowed pages
-        update_option('__pm_allowed_pages', $allowed_pages);
 
 
-        // Update Subscription ID
-        update_option('__pm_subscription_id', $subscription_id);
-              
-        
-        array_push($this->msg,[
-            'class'     => $this->notice_css['success'],
-            'message'   => 'Settings have been successfully updated. <a href="'.$this->url_push.'">Push Notification</a>'
-        ]);        
-        unset($is_updated,$allowed_pages,$subscription_id);
-       
-   }
-   /***/
 
-   /**
-    * Get list of available pages / posts
-    * @global type $wpdb
-    * @return type
-    */
-   private function getPages(){
-       
-        global $wpdb;
-
-        // Get All Posts and Pages with publish status
-        return $wpdb->get_results( "SELECT ID, post_title,post_name,post_type 
-                FROM $wpdb->posts
-                WHERE post_status LIKE 'publish' 
-                AND post_type IN ('page','post')
-                ORDER BY  post_title ASC" );       
-   }
-   /***/
 }
