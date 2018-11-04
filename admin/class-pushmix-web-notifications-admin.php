@@ -261,12 +261,12 @@ class Pushmix_Web_Notifications_Admin {
    */
     public function pushmix_push(){
         
-       	$url                = $this->pm->getSettingsUrl();
-        $url_push           = $this->pm->getPushUrl();
-        $subscription_id    = get_option('__pm_subscription_id');
-        $msg                = $this->pm->getMsg();
-        $notification_priority = $this->pm->getNotificationPriorities();
-        $notification_lifespan = $this->pm->getNotificationLifespan();
+       	$url                    = $this->pm->getSettingsUrl();
+        $url_push               = $this->pm->getPushUrl();
+        $subscription_id        = get_option('__pm_subscription_id');
+        $msg                    = $this->pm->getMsg();
+        $notification_priority  = $this->pm->getNotificationPriorities();
+        $notification_lifespan  = $this->pm->getNotificationLifespan();
         #dd($subscription_id);
         
         /**
@@ -303,7 +303,12 @@ class Pushmix_Web_Notifications_Admin {
                 return;
 
             }else{
-            	dd('Call API to push Notification out');
+
+                $this->pm->push($subscription_id);
+                $msg       = $this->pm->getMsg();
+                
+                require 'partials/pushmix-web-notifications-admin-push.php';
+                return;
             }	
         }
         

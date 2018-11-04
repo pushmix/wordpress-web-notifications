@@ -15,7 +15,8 @@ class PushmixClass{
 * @var type 
 */
 private $api = [
-'get_topics'    => "http://localhost/api/get/topics",
+	'get_topics'    => "http://localhost/api/get/topics",
+	'push'    		=> "http://localhost/api/push",
 ];
 
 /**
@@ -400,9 +401,82 @@ private $notice_css = [
    }
    /***/    	
 
+   /**
+    * Queue Notification for Processing
+    *
+    * @param      <string>   $subscription_id  The subscription identifier
+    *
+    * @return     boolean  ( true on success, false otherwise )
+    */
+   public function push($subscription_id){
 
-   public function validateUrl($url){
 
+ 		$data = [
+            'body' => [
+                'key_id' 		=> $subscription_id,
+                'topic'			=> $_POST['topic'],
+                'title'			=> $_POST['title'],
+                'body'			=> $_POST['body'],
+                'default_url'	=> $_POST['default_url']
+                ]
+        ];
+
+        if( !empty( $_POST['action_title_one'] ) && !empty( $_POST['action_url_one'] ) ){
+        	$data['body']['action_title_one'] 	= $_POST['action_title_one'];
+        	$data['body']['action_url_one'] 	= $_POST['action_url_one'];
+        }
+
+        if( !empty( $_POST['action_title_two'] ) && !empty( $_POST['action_url_two'] ) ){
+        	$data['body']['action_title_two'] 	= $_POST['action_title_two'];
+        	$data['body']['action_url_two'] 	= $_POST['action_url_two'];
+        }        
+
+        if( !empty( $_POST['image'] ) ){
+        	$data['body']['image'] 	= $_POST['image'];
+        }         
+
+
+        $rsp = wp_remote_post($this->api['push'], $data);
+        
+        
+        // wordpress API call error
+        if( is_wp_error( $rsp ) ) {
+            
+            array_push($this->msg,[
+                'class'     => $this->notice_css['error'],
+                'message'   => $rsp->get_error_message()
+            ]);
+            
+            return false;
+        }
+
+        // error returned from Pushmix
+        if( empty($rsp['response']) === false && $rsp['response']['code'] !== 200){
+            
+            $r = json_decode($rsp['body']);
+            $error = isset($r->error) ? $r->error : 'Error obtaining API response';
+            
+            array_push($this->msg,[
+                'class'     => $this->notice_css['error'],
+                'message'   => $error.' -  Check plugin <a href="'.$this->url_settings.'">settings</a>.'
+            ]);
+            
+             return false;
+        }        
+        
+        /**
+         * Response 200 is success
+         */
+        if($rsp['response']['code'] === 200){
+            
+            array_push($this->msg,[
+                'class'     => $this->notice_css['success'],
+                'message'   => 'Notification has been submitted successfully',
+            ]);            
+            return true;
+        }
+        
+        return false;   		
    }
    /***/
 
