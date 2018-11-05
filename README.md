@@ -35,7 +35,7 @@ View all available [features](https://www.pushmix.co.uk/features) or see [docume
 
 OR 
 
-1. (Download)[https://github.com/pushmix/wordpress-web-notifications/archive/master.zip] zip file
+1. [Download](https://github.com/pushmix/wordpress-web-notifications/archive/master.zip)  zip file
 2. Upload the zip file via Plugins > Add New > Upload
 3. Activate the plugin through the 'Plugins' menu in WordPress
 
