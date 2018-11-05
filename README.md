@@ -39,6 +39,9 @@ That's it!
 
 ![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/screens/screenshot-1.png "Pushmix plugin settings")
 
+
+### Opt In Prompt
+
 Build your subcsibers audience by encuraging your visitors to opt in for your web push notifications.
 
 ![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/screens/screenshot-4.png "Pushmix opt in prompt")
@@ -61,9 +64,18 @@ Notification lifespan allows to specify for how long web notification delivery w
 ### Content Section
 Content section included three fields, `Notification Title`, `Notification Body` and `Notificatuin URL`, all these fields are described themselves and must be filled with content before you can push web notification.
 
-![alt text](https://github.com/pushmix/wordpress-web-notifications/screens/screenshot-2.png "Notification Audience an Content")
+![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/screens/screenshot-2.png "Notification Audience an Content")
 
 ## Optional Parameters
 You can define up to two action buttons to be displayed with a notification as well as large image URL. All fields bellow are optional, however if you choose to specify Action Title than Action URL is required.
 
-![alt text](https://github.com/pushmix/wordpress-web-notifications/screens/screenshot-3.png "Optional Parameters")
+![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/screens/screenshot-3.png "Optional Parameters")
+
+## Issues
+If you come across any issues please report them [here](https://github.com/pushmix/wordpress-web-notifications/issues).
+
+## Security Vulnerabilities
+If you discover a security vulnerability please send an e-mail to support@pushmix.co.uk. 
+
+## License
+The Pushmix WordPress Web Notifications plugin is licensed under the GNU General Public License v2.0
