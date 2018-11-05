@@ -292,7 +292,7 @@ class Pushmix_Web_Notifications_Admin {
             }else{
 
                 $this->pm->push($subscription_id);
-                $msg       = $this->pm->getMsg();
+                $msg = $this->pm->getMsg();
                 
                 require 'partials/pushmix-web-notifications-admin-push.php';
                 return;

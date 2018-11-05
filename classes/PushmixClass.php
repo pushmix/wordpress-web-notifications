@@ -18,7 +18,7 @@ class PushmixClass{
 */
 private $api = [
 	'get_topics'    => "https://www.pushmix.co.uk/api/get/topics",
-	'push'    		=> "https://www.pushmix.co.uk/api/push",
+	'push'    		=> "https://www.pushmix.co.uk/api/push",  
 ];
 
 /**
@@ -213,8 +213,19 @@ private $notice_css = [
 	   #dd($_POST);
 	   
 	   $is_updated      = true;
-	   $allowed_pages   = isset($_POST['post_name']) ? $_POST['post_name'] : [];
-	   $subscription_id = isset($_POST['subscription_id']) ? $_POST['subscription_id'] : '';
+
+	   $allowed_pages   = isset($_POST['post_name']) 
+            ? (array)$_POST['post_name'] 
+            : [];
+
+        if( empty($allowed_pages) === false ){
+            $allowed_pages = array_map( 'sanitize_text_field', $allowed_pages );                
+        }
+        
+
+	   $subscription_id = isset($_POST['subscription_id']) 
+            ? sanitize_text_field($_POST['subscription_id']) 
+            : '';
 	   
 	    // Update Allowed pages
 	    update_option('__pm_allowed_pages', $allowed_pages);
@@ -416,29 +427,36 @@ private $notice_css = [
  		$data = [
             'body' => [
                 'key_id' 		=> $subscription_id,
-                'topic'			=> $_POST['topic'],
-                'title'			=> $_POST['title'],
-                'body'			=> $_POST['body'],
-                'default_url'	=> $_POST['default_url']
+                'topic'			=> sanitize_text_field($_POST['topic']),
+                'title'			=> sanitize_text_field($_POST['title']),
+                'body'			=> sanitize_text_field($_POST['body']),
+                'default_url'	=> esc_url_raw($_POST['default_url']),
+
+                // Notification Life Span
+                'time_to_live'  => sanitize_text_field($_POST['time_to_live']),
+                // Mesage Priority
+                'priority'      => sanitize_text_field($_POST['priority']),               
                 ]
         ];
 
         // attache Action 1 Title and URL
         if( !empty( $_POST['action_title_one'] ) && !empty( $_POST['action_url_one'] ) ){
-        	$data['body']['action_title_one'] 	= $_POST['action_title_one'];
-        	$data['body']['action_url_one'] 	= $_POST['action_url_one'];
+        	$data['body']['action_title_one'] 	= sanitize_text_field($_POST['action_title_one']);
+        	$data['body']['action_url_one'] 	= esc_url_raw($_POST['action_url_one']);
         }
 
         // attache  Action 2 Title and URL
         if( !empty( $_POST['action_title_two'] ) && !empty( $_POST['action_url_two'] ) ){
-        	$data['body']['action_title_two'] 	= $_POST['action_title_two'];
-        	$data['body']['action_url_two'] 	= $_POST['action_url_two'];
+        	$data['body']['action_title_two'] 	= sanitize_text_field($_POST['action_title_two']);
+        	$data['body']['action_url_two'] 	= esc_url_raw($_POST['action_url_two']);
         }        
 
         // attached Larg Image
         if( !empty( $_POST['image'] ) ){
-        	$data['body']['image'] 	= $_POST['image'];
-        }         
+        	$data['body']['image'] 	= esc_url_raw($_POST['image']);
+        }     
+
+        #dd($data);    
 
         // mak API Call
         $rsp = wp_remote_post($this->api['push'], $data);

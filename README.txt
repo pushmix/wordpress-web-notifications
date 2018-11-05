@@ -48,7 +48,7 @@ OR
 1. Upload the zip file via Plugins > Add New > Upload
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
-Go to Pushmix Settings and enter Subscription ID and select pages where you wish to display opt in prompt
+Go to Pushmix Settings and enter Subscription ID and select pages where you wish to display opt in prompt.
 
 That's it!
 
