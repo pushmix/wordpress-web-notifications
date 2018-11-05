@@ -4,7 +4,7 @@ use PushmixWebNotifications\PushmixClass;
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://github.com/pushmix/web-notification
+ * @link       https://github.com/pushmix/wordpress-web-notifications
  * @since      1.0.0
  *
  * @package    Pushmix_Web_Notifications
@@ -47,24 +47,12 @@ class Pushmix_Web_Notifications_Admin {
 	private $pm;
         
 	/**
-	 * Settings URL
+	 * Messages
 	 */
-	private $url_settings;
+	private $msg;
 
-	/**
-	 * Web Push Notification URL
-	 */
-	private $url_push;
-        
-        /**
-         * Notice CSS classes
-         */
-        private $notice_css = [
-            'success'   => 'notice-success',
-            'error'     => 'notice-error',
-            'warning'   => 'notice-warning',
-            'info'      => 'notice-info'
-        ];
+       
+
         
 	/**
 	 * Initialize the class and set its properties.
@@ -129,7 +117,7 @@ class Pushmix_Web_Notifications_Admin {
                         $this->version, 
                         'all' 
                 );                
-                            #dd($hook);			
+                #dd($hook);			
             }
 
 
@@ -144,28 +132,27 @@ class Pushmix_Web_Notifications_Admin {
 	 */
 	public function enqueue_scripts($hook) {
 
-            /**
-             * This function is provided for demonstration purposes only.
-             *
-             * An instance of this class should be passed to the run() function
-             * defined in Pushmix_Web_Notifications_Loader as all of the hooks are defined
-             * in that particular class.
-             *
-             * The Pushmix_Web_Notifications_Loader will then create the relationship
-             * between the defined hooks and the functions defined in this
-             * class.
-             */
-            #dd($hook);
-            if( strpos($hook, 'pushmix') !== false ){
+        /**
+         * This function is provided for demonstration purposes only.
+         *
+         * An instance of this class should be passed to the run() function
+         * defined in Pushmix_Web_Notifications_Loader as all of the hooks are defined
+         * in that particular class.
+         *
+         * The Pushmix_Web_Notifications_Loader will then create the relationship
+         * between the defined hooks and the functions defined in this
+         * class.
+         */
+        #dd($hook);
+        if( strpos($hook, 'pushmix') !== false ){
 
 
-                #wp_enqueue_script( "pushmix-code-js", plugin_dir_url( __FILE__ ) . 'js/pushmix.core.min.js', array( ), $this->version, false );
-                wp_enqueue_script( "dual-listbox-js", plugin_dir_url( __FILE__ ) . 'js/dual-listbox.min.js', array( ), $this->version, false );
+            wp_enqueue_script( "dual-listbox-js", plugin_dir_url( __FILE__ ) . 'js/dual-listbox.min.js', array( ), $this->version, false );
 
-                wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/pushmix-web-notifications-admin.js', array( 'jquery' ), $this->version, false );			
+            wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/pushmix-web-notifications-admin.js', array( 'jquery' ), $this->version, false );			
 
 
-            }		
+        }		
 
 	}
 	/***/
@@ -194,7 +181,7 @@ class Pushmix_Web_Notifications_Admin {
     /**
      * Add Plugin Menu
      */
-    public function add_menu() {
+    public function pushmix_add_menu() {
 
 		#dd('asdsd');
 

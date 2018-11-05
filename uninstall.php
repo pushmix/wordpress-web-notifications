@@ -19,7 +19,7 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://github.com/pushmix/web-notification
+ * @link       https://github.com/pushmix/wordpress-web-notifications
  * @since      1.0.0
  *
  * @package    Pushmix_Web_Notifications
@@ -29,3 +29,7 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+
+delete_option('__pm_subscription_id');
+delete_option('__pm_allowed_pages');

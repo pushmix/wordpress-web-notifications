@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://github.com/pushmix/web-notification
+ * @link       https://github.com/pushmix/wordpress-web-notifications
  * @since      1.0.0
  *
  * @package    Pushmix_Web_Notifications
@@ -49,8 +49,8 @@ class Pushmix_Web_Notifications_Public {
 	 */
 	public function __construct( $plugin_name, $version ) {
 
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->plugin_name 	= $plugin_name;
+		$this->version 		= $version;
 
 	}
 
@@ -115,8 +115,7 @@ class Pushmix_Web_Notifications_Public {
                 wp_localize_script( $this->plugin_name, '_pm', array(
                      "subscriber_id" => $subscriber_id,
                      "sw" => plugin_dir_url( __FILE__ ) . "js/pm_service_worker.js",
-                     "api" => "https://www.pushmix.co.uk/api/",
-                     "debug"	=> true	    
+                     "api" => "https://www.pushmix.co.uk/api/" 
                 ) );	
 
             }	

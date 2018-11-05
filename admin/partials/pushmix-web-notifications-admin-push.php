@@ -5,7 +5,7 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://github.com/pushmix/web-notification
+ * @link       https://github.com/pushmix/wordpress-web-notifications
  * @since      1.0.0
  *
  * @package    Pushmix_Web_Notifications
@@ -18,7 +18,7 @@
 <div class="wrap">
 
 <!-- Title    -->
-<h1>Pushmix - Web Push Notifications</h1>
+<h1><img src="<?php echo plugins_url('../img/apple-touch-icon-57x57.png',__FILE__);?>" style="margin-right: 1em;">Pushmix - Web Push Notifications</h1>
 <!-- END Title    -->
 
 <!-- Settings Errors    -->

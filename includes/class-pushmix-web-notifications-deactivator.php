@@ -3,7 +3,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       https://github.com/pushmix/web-notification
+ * @link       https://github.com/pushmix/wordpress-web-notifications
  * @since      1.0.0
  *
  * @package    Pushmix_Web_Notifications

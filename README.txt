@@ -1,61 +1,74 @@
 === Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: https://github.com/pushmix/web-notification
-Tags: comments, spam
+Contributors: pushmix
+Donate link: https://github.com/pushmix/wordpress-web-notifications
+Tags: web push notifications, push notifications, notification icon, notification actions, pushmix
 Requires at least: 3.0.1
-Tested up to: 3.4
+Tested up to: 4.9.8
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Effectively re-engage your visitors with web push notifications, all major mobile and desktop browsers supported.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+This plugin provides integration with Pushmix service allowing effectively re-engaging website visitors with customized web notifications. You can activate opt in promt on selected pages to acquire subscribers audience. Once you have build subscribers audience you can start dispatching web push notifications directly from WordPress Dashboard. 
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+You will need Subscription ID to use it. The Subscription ID is free and can be obtained from (Pushmix)[https://www.pushmix.co.uk].
 
-A few notes about the sections above:
+## Features
+* push web notifications from WordPress Dashboard
+* choose pages and posts to display opt in prompt
+* audience segmentation via topic subscription 
+* customised opt in prompt
+* real time user interactions in Google Analytics
+* custom notification icon and badge
+* action buttons with icons
+* notification logs
+* large image support
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+## Requirements
+* Website must be served via `HTTPS://` or `localhost` to display opt in prompt
+* Free Pushmix Subscription ID - (obtain yours now)[https://dash.pushmix.co.uk/register]
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+View all available [features](https://www.pushmix.co.uk/features) or see [documentation](https://www.pushmix.co.uk/docs) for more details.
+
+
+
+## Sending Notifications
+From WordPress Dashboard menu click Pushmix to view web push notification interface.
+
+### Audience and Delivery Settings
+This section allows you to segment your target audience and set notification delivery priority and lifespan.
+
+By default `All Audience` option is selected, using this selection will dispatch web notification to all users opted in for notification using opt in prompt (users who have licked `Notifications - Allow`).
+
+During subscription creation if you have created additional topics, they will be displayed in the drop down. To target specific audience group (i.e. Special Offers) select topic from drop down.
+
+Priority option by deault set to `High`, other option available is `Normal`.
+`High` priority messages attempted to be delivered immediately. `Normal` priority messages won't open network connections on a sleeping device, and their delivery may be delayed to conserve battery.
+
+Notification lifespan allows to specify for how long web notification delivery will be attempted. Default option is `1 Hour`.
+
+### Content Section
+Content section included three fields, `Notification Title`, `Notification Body` and `Notificatuin URL`, all these fields are described themselves and must be filled with content before you can push web notification.
+
+## Optional Parameters
+You can define up to two action buttons to be displayed with a notification as well as large image URL. All fields bellow are optional, however if you choose to specify Action Title than Action URL is required.
+
+
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+1. Upload the Pushmix Web Notifications plugin to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Go to Pushmix Settings and enter Subscription ID and select pages where you wish to display opt in prompt
 
-e.g.
+That's it!
 
-1. Upload `pushmix-web-notifications.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+Build your subcsibers audience by encuraging your visitors to opt in for your web push notifications. To push web notification click Pushmix from WordPress menu.
 
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
 
 == Screenshots ==
 
@@ -65,11 +78,32 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 (or jpg, jpeg, gif).
 2. This is the second screen shot
 
+## Sending Notifications
+From WordPress Dashboard menu click Pushmix to view web push notification interface.
+
+### Audience and Delivery Settings
+This section allows you to segment your target audience and set notification delivery priority and lifespan.
+
+By default `All Audience` option is selected, using this selection will dispatch web notification to all users opted in for notification using opt in prompt (users who have licked `Notifications - Allow`).
+
+During subscription creation if you have created additional topics, they will be displayed in the drop down. To target specific audience group (i.e. Special Offers) select topic from drop down.
+
+Priority option by deault set to `High`, other option available is `Normal`.
+`High` priority messages attempted to be delivered immediately. `Normal` priority messages won't open network connections on a sleeping device, and their delivery may be delayed to conserve battery.
+
+Notification lifespan allows to specify for how long web notification delivery will be attempted. Default option is `1 Hour`.
+
+### Content Section
+Content section included three fields, `Notification Title`, `Notification Body` and `Notificatuin URL`, all these fields are described themselves and must be filled with content before you can push web notification.
+
+## Optional Parameters
+You can define up to two action buttons to be displayed with a notification as well as large image URL. All fields bellow are optional, however if you choose to specify Action Title than Action URL is required.
+
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 1.0.0 =
+* Release Date - 5th November 2018
+
 
 = 0.5 =
 * List versions from most recent at top to oldest at bottom.
@@ -87,28 +121,3 @@ This version fixes a security related bug.  Upgrade immediately.
 You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
 plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
 "installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`

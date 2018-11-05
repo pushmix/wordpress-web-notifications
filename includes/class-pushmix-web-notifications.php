@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       https://github.com/pushmix/web-notification
+ * @link       https://github.com/pushmix/wordpress-web-notifications
  * @since      1.0.0
  *
  * @package    Pushmix_Web_Notifications
@@ -84,7 +84,7 @@ class Pushmix_Web_Notifications {
 	/***/
 
 	/**
-	 * Autoload Image Optimizer Classes
+	 * Autoload Pushmix Classes
 	 * @return [type] [description]
 	 */
 	private function autoload(){
@@ -201,7 +201,7 @@ class Pushmix_Web_Notifications {
 		// Add Settings
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'pushmix_settings_init' );
 		// Load Menu
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );		
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'pushmix_add_menu' );		
 
 	}
 

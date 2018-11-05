@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://github.com/pushmix/web-notification
+ * @link              https://github.com/pushmix/wordpress-web-notifications
  * @since             1.0.0
  * @package           Pushmix_Web_Notifications
  *
  * @wordpress-plugin
  * Plugin Name:       Pushmix Web Notifications
- * Plugin URI:        https://github.com/pushmix/web-notification
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin URI:        https://github.com/pushmix/wordpress-web-notifications
+ * Description:       Effectively re-engage your visitors with web push notifications, all major mobile and desktop browsers supported. Activate opt in prompt on selected pages and posts, push web notifications from Wordpress Dashboard. To get started activate Pushmix plugin and then go to Pushmix Settings page to enter your Subscription ID. Obtain your Free Subscription ID at <a href="https://www.pushmix.co.uk">pushmix.co.uk</a>
  * Version:           1.0.0
  * Author:            Pushmix
- * Author URI:        https://github.com/pushmix/web-notification
+ * Author URI:        https://github.com/pushmix/wordpress-web-notifications
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       pushmix-web-notifications
@@ -36,7 +36,6 @@ define('PUSHMIX_PLUGIN_URL', plugins_url(plugin_basename(dirname(__FILE__))));
 define('PUSHMIX_PLUGIN_DIR_INCLUDES', PUSHMIX_PLUGIN_DIR . '/includes');
 define('PUSHMIX_PLUGIN_DIR_ADMIN', PUSHMIX_PLUGIN_DIR . '/admin');
 define('PUSHMIX_PLUGIN_DIR_PUBLIC', PUSHMIX_PLUGIN_DIR . '/public');
-#define('PUSHMIX_PLUGIN_DIR_TEMPLATES', PUSHMIX_PLUGIN_DIR . '/templates');
 define('PUSHMIX_PLUGIN_DIR_CLASSES', PUSHMIX_PLUGIN_DIR . '/classes');
 
 /**

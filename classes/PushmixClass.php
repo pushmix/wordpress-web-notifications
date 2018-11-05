@@ -4,6 +4,8 @@ namespace PushmixWebNotifications;
 /**
  * Pushmix Class
  * 
+ * Provides methods to support plugin settings and push notification pages
+ * 
  * @copyright (c) 2018
  * @author Pushmix
  */
@@ -15,8 +17,8 @@ class PushmixClass{
 * @var type 
 */
 private $api = [
-	'get_topics'    => "http://localhost/api/get/topics",
-	'push'    		=> "http://localhost/api/push",
+	'get_topics'    => "https://www.pushmix.co.uk/api/get/topics",
+	'push'    		=> "https://www.pushmix.co.uk/api/push",
 ];
 
 /**
@@ -181,7 +183,7 @@ private $notice_css = [
 	/***/	
 
     /**
-     * Check if Wp is running on localhost or not
+     * Check if Wordpress running on localhost
      * @return boolean - true if running on localhost
      */
     public function isLocalhost(){
@@ -192,7 +194,7 @@ private $notice_css = [
         if( $is_local )
             array_push($this->msg, [
                 'class'     => $this->notice_css['info'],
-                'message'   => 'Local Environment detected - Subscription prompt will only be displayed under localhost domain name. <a href="#">More info</a>',
+                'message'   => 'Local Environment detected - Subscription prompt will only be displayed under localhost domain name. <a href="https://www.pushmix.co.uk/docs" target="_new">More info</a>',
             ]);        
         
         return $is_local;
@@ -410,7 +412,7 @@ private $notice_css = [
     */
    public function push($subscription_id){
 
-
+        // request data
  		$data = [
             'body' => [
                 'key_id' 		=> $subscription_id,
@@ -421,21 +423,24 @@ private $notice_css = [
                 ]
         ];
 
+        // attache Action 1 Title and URL
         if( !empty( $_POST['action_title_one'] ) && !empty( $_POST['action_url_one'] ) ){
         	$data['body']['action_title_one'] 	= $_POST['action_title_one'];
         	$data['body']['action_url_one'] 	= $_POST['action_url_one'];
         }
 
+        // attache  Action 2 Title and URL
         if( !empty( $_POST['action_title_two'] ) && !empty( $_POST['action_url_two'] ) ){
         	$data['body']['action_title_two'] 	= $_POST['action_title_two'];
         	$data['body']['action_url_two'] 	= $_POST['action_url_two'];
         }        
 
+        // attached Larg Image
         if( !empty( $_POST['image'] ) ){
         	$data['body']['image'] 	= $_POST['image'];
         }         
 
-
+        // mak API Call
         $rsp = wp_remote_post($this->api['push'], $data);
         
         
