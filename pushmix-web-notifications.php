@@ -18,7 +18,7 @@
  * Description:       Effectively re-engage your visitors with web push notifications, all major mobile and desktop browsers supported. Activate opt in prompt on selected pages and posts, push web notifications from Wordpress Dashboard. To get started activate Pushmix plugin and then go to Pushmix Settings page to enter your Subscription ID. Obtain your Free Subscription ID at <a href="https://www.pushmix.co.uk">pushmix.co.uk</a>
  * Version:           1.0.0
  * Author:            Pushmix
- * Author URI:        https://github.com/pushmix/wordpress-web-notifications
+ * Author URI:        https://www.pushmix.co.uk
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       pushmix-web-notifications
