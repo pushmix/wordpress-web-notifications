@@ -1,4 +1,4 @@
-# ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix plugin for WordPress
+# ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix web push notifications plugin for WordPress
 
 Effectively re-engage your visitors with web push notifications, all major mobile and desktop browsers supported.
 
