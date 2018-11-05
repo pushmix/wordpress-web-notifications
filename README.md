@@ -35,10 +35,13 @@ View all available [features](https://www.pushmix.co.uk/features) or see [docume
 
 That's it!
 
+### Pushmix Settings
+
 ![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/screens/screenshot-1.png "Pushmix plugin settings")
 
-Build your subcsibers audience by encuraging your visitors to opt in for your web push notifications. To push web notification click Pushmix from WordPress menu.
+Build your subcsibers audience by encuraging your visitors to opt in for your web push notifications.
 
+![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/screens/screenshot-4.png "Pushmix opt in prompt")
 
 ## Sending Notifications
 From WordPress Dashboard menu click Pushmix to view web push notification interface.

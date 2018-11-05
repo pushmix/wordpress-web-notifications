@@ -52,7 +52,7 @@
 
             <div class="col-lg-4">
                 <p class="text-muted">
-                    Subscription ID is required in order to identify and retrieve your subscription details. This ID can be found in the Dashboard under Code subscription menu.
+                    Subscription ID is required in order to identify and retrieve your subscription details. This ID can be found in <a href="https://dash.pushmix.co.uk/login">Pushmix Dashboard</a> under Code subscription menu.
                 </p>
                
             </div>
