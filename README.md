@@ -6,13 +6,13 @@ Effectively re-engage your visitors with web push notifications, all major mobil
 
 This plugin provides integration with Pushmix service allowing effectively re-engaging website visitors with customized web notifications. You can activate opt in promt on selected pages to acquire subscribers audience. Once you have build subscribers audience you can start dispatching web push notifications directly from WordPress Dashboard. 
 
-You will need Subscription ID to use it. The Subscription ID is free and can be obtained from (Pushmix)[https://www.pushmix.co.uk].
+You will need Subscription ID to use it. The Subscription ID is free and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
 
 ## Features
 * push web notifications from WordPress Dashboard
 * choose pages and posts to display opt in prompt
 * audience segmentation via topic subscription 
-* customised opt in prompt
+* customized opt in prompt
 * real time user interactions in Google Analytics
 * custom notification icon and badge
 * action buttons with icons
@@ -22,7 +22,7 @@ You will need Subscription ID to use it. The Subscription ID is free and can be 
 
 ## Requirements
 * Website must be served via `HTTPS://` or `localhost` to display opt in prompt
-* Free Pushmix Subscription ID - (obtain yours now)[https://dash.pushmix.co.uk/register]
+* Free Pushmix Subscription ID - [obtain yours now](https://dash.pushmix.co.uk/register)
 
 View all available [features](https://www.pushmix.co.uk/features) or see [documentation](https://www.pushmix.co.uk/docs) for more details.
 
@@ -35,7 +35,7 @@ View all available [features](https://www.pushmix.co.uk/features) or see [docume
 
 That's it!
 
-![alt text](https://github.com/pushmix/wordpress-web-notifications/screens/screenshot-1.png "Pushmix plugin settings")
+![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/screens/screenshot-1.png "Pushmix plugin settings")
 
 Build your subcsibers audience by encuraging your visitors to opt in for your web push notifications. To push web notification click Pushmix from WordPress menu.
 
