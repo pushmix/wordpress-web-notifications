@@ -29,9 +29,17 @@ View all available [features](https://www.pushmix.co.uk/features) or see [docume
 
 ## Installation
 
-1. Upload the Pushmix Web Notifications plugin to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Pushmix Settings and enter Subscription ID and select pages where you wish to display opt in prompt
+1. Go to Plugins > Add New.
+2. Search for "pushmix web notifications".
+3. Click "Install Now".
+
+OR 
+
+1. (Download)[https://github.com/pushmix/wordpress-web-notifications/archive/master.zip] zip file
+2. Upload the zip file via Plugins > Add New > Upload
+3. Activate the plugin through the 'Plugins' menu in WordPress
+
+Go to Pushmix Settings and enter Subscription ID and select pages where you wish to display opt in prompt.
 
 That's it!
 
