@@ -1,30 +1,24 @@
-# ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) WordPress Web Notifications Plugin
+# ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Web Push Notifications for WordPress
 
-Effectively re-engage your visitors with web push notifications, all major mobile and desktop browsers supported.
+Effectively re-engage your visitors with customized web push notifications, all major mobile and desktop browsers supported.
 
 ## About
 
-This plugin provides integration with Pushmix service allowing effectively re-engaging website visitors with customized web notifications. You can activate opt in promt on selected pages to acquire subscribers audience. Once you have build subscribers audience you can start dispatching web push notifications directly from WordPress Dashboard. 
+This plugin provides integration with [Pushmix](https://www.pushmix.co.uk) service. Activate opt-in prompt on selected pages to acquire subscribers audience. Once you have a build up subscribers audience you can start sending web push notifications directly from WordPress Dashboard.
 
-You will need Subscription ID to use it. The Subscription ID is free and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
 
 ## Features
-* push web notifications from WordPress Dashboard
-* choose pages and posts to display opt in prompt
-* audience segmentation via topic subscription 
-* customized opt in prompt
-* real time user interactions in Google Analytics
-* custom notification icon and badge
-* action buttons with icons
-* notification logs
-* large image support
+* Send web push notifications from WordPress Dashboard
+* Select pages and posts to display opt-in prompt
+* Audience segmentation via topic subscription
 
 
 ## Requirements
-* Website must be served via `HTTPS://` or `localhost` to display opt in prompt
-* Free Pushmix Subscription ID - [obtain yours now](https://dash.pushmix.co.uk/register)
+* Website must be served via `HTTPS://` or `localhost` to display opt-in prompt
+* Pushmix Subscription ID 
 
-View all available [features](https://www.pushmix.co.uk/features) or see [documentation](https://www.pushmix.co.uk/docs) for more details.
+You will need a Subscription ID to use it. The Subscription ID is FREE and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
+
 
 
 ## Installation
@@ -35,11 +29,11 @@ View all available [features](https://www.pushmix.co.uk/features) or see [docume
 
 OR 
 
-1. [Download](https://github.com/pushmix/wordpress-web-notifications/archive/master.zip)  zip file
+1. [Download](https://downloads.wordpress.org/plugin/pushmix-web-notifications.zip)  zip file
 2. Upload the zip file via Plugins > Add New > Upload
 3. Activate the plugin through the 'Plugins' menu in WordPress
 
-Go to Pushmix Settings and enter Subscription ID and select pages where you wish to display opt in prompt.
+Go to Pushmix Settings, enter Subscription ID and select pages where you wish to display opt-in prompt.
 
 That's it!
 
@@ -48,11 +42,11 @@ That's it!
 ![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/assets/screenshot-1.png "Pushmix plugin settings")
 
 
-### Opt In Prompt
+### Opt-In Prompt
 
-Build your subcsibers audience by encuraging your visitors to opt in for your web push notifications.
+Build your subscribers audience by encouraging your visitors to opt-in for web push notifications.
 
-![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/assets/screenshot-4.png "Pushmix opt in prompt")
+![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/assets/screenshot-4.png "Pushmix opt-in prompt")
 
 ## Sending Notifications
 From WordPress Dashboard menu click Pushmix to view web push notification interface.
@@ -60,22 +54,22 @@ From WordPress Dashboard menu click Pushmix to view web push notification interf
 ### Audience and Delivery Settings
 This section allows you to segment your target audience and set notification delivery priority and lifespan.
 
-By default `All Audience` option is selected, using this selection will dispatch web notification to all users opted in for notification using opt in prompt (users who have licked `Notifications - Allow`).
+By default `All Audience` option is selected, using this selection will send the message to all users opted in for web push notifications using opt-in prompt (users who have clicked `Notifications - Allow`).
 
-During subscription creation if you have created additional topics, they will be displayed in the drop down. To target specific audience group (i.e. Special Offers) select topic from drop down.
+During subscription creation, if you have created additional topics, they will be displayed in the drop down. To target specific audience group (i.e. Special Offers) select topic from drop down.
 
-Priority option by deault set to `High`, other option available is `Normal`.
+Priority option by default set to `High`, another available option is `Normal`.
 `High` priority messages attempted to be delivered immediately. `Normal` priority messages won't open network connections on a sleeping device, and their delivery may be delayed to conserve battery.
 
-Notification lifespan allows to specify for how long web notification delivery will be attempted. Default option is `1 Hour`.
+Notification lifespan allows specifying for how long web notification delivery will be attempted. The default option is `1 Hour`.
 
 ### Content Section
-Content section included three fields, `Notification Title`, `Notification Body` and `Notificatuin URL`, all these fields are described themselves and must be filled with content before you can push web notification.
+The content section included three fields, `Notification Title`, `Notification Body` and `Notification URL`, all these fields are described themselves and must be filled with content before you can send web push notification.
 
 ![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/assets/screenshot-2.png "Notification Audience an Content")
 
 ## Optional Parameters
-You can define up to two action buttons to be displayed with a notification as well as large image URL. All fields bellow are optional, however if you choose to specify Action Title than Action URL is required.
+You can define up to two action buttons to be displayed with a notification as well as large image URL. All fields below are optional, however, if you choose to specify Action Title than Action URL is required.
 
 ![alt text](https://raw.githubusercontent.com/pushmix/wordpress-web-notifications/master/assets/screenshot-3.png "Optional Parameters")
 
